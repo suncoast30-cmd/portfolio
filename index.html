@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kevin Radtke — Art Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav-logo">Kevin Radtke</a>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="cart-toggle" id="cart-toggle" aria-label="Shopping cart">
+      Cart <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <a href="#gallery" class="hero-cta">View Work</a>
+    </div>
+    <div class="hero-image">
+      <svg viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;background:#efece8;" aria-label="Illustration of a person seated in a chair">
+        <!-- Floor line -->
+        <line x1="60" y1="520" x2="440" y2="520" stroke="#2a2a2a" stroke-width="1.2" opacity="0.4"/>
+        <!-- Chair back legs -->
+        <path d="M200,520 L210,340" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M320,520 L310,340" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <!-- Chair front legs -->
+        <path d="M175,520 L190,410" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M345,520 L330,410" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <!-- Chair seat -->
+        <path d="M185,412 C190,405 325,405 335,412" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M185,412 L190,410" stroke="#2a2a2a" stroke-width="1" fill="none"/>
+        <path d="M335,412 L330,410" stroke="#2a2a2a" stroke-width="1" fill="none"/>
+        <!-- Chair back -->
+        <path d="M210,340 C215,335 305,335 310,340" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M210,340 L215,250" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M310,340 L305,250" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M215,250 C220,245 300,245 305,250" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <!-- Chair back slats -->
+        <line x1="240" y1="250" x2="237" y2="338" stroke="#2a2a2a" stroke-width="1" opacity="0.5"/>
+        <line x1="260" y1="248" x2="260" y2="337" stroke="#2a2a2a" stroke-width="1" opacity="0.5"/>
+        <line x1="280" y1="250" x2="283" y2="338" stroke="#2a2a2a" stroke-width="1" opacity="0.5"/>
+        <!-- Torso -->
+        <path d="M230,400 C225,370 220,330 235,290" stroke="#2a2a2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M290,400 C295,370 298,330 285,290" stroke="#2a2a2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Shoulders -->
+        <path d="M235,290 C240,280 250,275 260,275 C270,275 280,280 285,290" stroke="#2a2a2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Neck -->
+        <path d="M252,275 L250,250" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M268,275 L270,250" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <!-- Head -->
+        <ellipse cx="260" cy="220" rx="28" ry="34" stroke="#2a2a2a" stroke-width="2" fill="none"/>
+        <!-- Hair suggestion -->
+        <path d="M234,210 C236,190 250,180 260,178 C270,180 284,190 286,210" stroke="#2a2a2a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M236,205 C240,195 252,186 260,184" stroke="#2a2a2a" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <path d="M284,205 C280,195 268,186 260,184" stroke="#2a2a2a" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <!-- Face details - subtle -->
+        <path d="M250,225 L258,230 L250,232" stroke="#2a2a2a" stroke-width="1" fill="none" opacity="0.5" stroke-linecap="round"/>
+        <line x1="248" y1="240" x2="268" y2="240" stroke="#2a2a2a" stroke-width="1" opacity="0.4" stroke-linecap="round"/>
+        <!-- Eyes -->
+        <path d="M247,215 C248,213 252,213 253,215" stroke="#2a2a2a" stroke-width="1" fill="none" opacity="0.6"/>
+        <path d="M265,215 C266,213 270,213 271,215" stroke="#2a2a2a" stroke-width="1" fill="none" opacity="0.6"/>
+        <!-- Left arm resting on lap -->
+        <path d="M235,295 C215,310 200,350 210,390 C215,400 230,405 245,400" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <!-- Left hand -->
+        <path d="M245,400 C248,398 250,395 248,392" stroke="#2a2a2a" stroke-width="1.2" fill="none" opacity="0.6" stroke-linecap="round"/>
+        <!-- Right arm resting on lap -->
+        <path d="M285,295 C305,310 318,350 308,390 C303,400 290,405 275,400" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <!-- Right hand -->
+        <path d="M275,400 C272,398 270,395 272,392" stroke="#2a2a2a" stroke-width="1.2" fill="none" opacity="0.6" stroke-linecap="round"/>
+        <!-- Legs -->
+        <path d="M235,405 C230,430 220,470 210,510 C208,516 212,520 218,518" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M285,405 C290,430 300,470 310,510 C312,516 308,520 302,518" stroke="#2a2a2a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <!-- Cross-hatching shadows on torso -->
+        <line x1="240" y1="310" x2="250" y2="325" stroke="#2a2a2a" stroke-width="0.5" opacity="0.2"/>
+        <line x1="245" y1="310" x2="255" y2="325" stroke="#2a2a2a" stroke-width="0.5" opacity="0.2"/>
+        <line x1="250" y1="310" x2="260" y2="325" stroke="#2a2a2a" stroke-width="0.5" opacity="0.2"/>
+        <line x1="243" y1="340" x2="253" y2="355" stroke="#2a2a2a" stroke-width="0.5" opacity="0.15"/>
+        <line x1="248" y1="340" x2="258" y2="355" stroke="#2a2a2a" stroke-width="0.5" opacity="0.15"/>
+        <!-- Shadow under chair -->
+        <ellipse cx="260" cy="522" rx="80" ry="4" fill="#2a2a2a" opacity="0.08"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="section gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title fade-in">Selected Works</h2>
+      <div class="gallery-filters fade-in">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="painting">Painting</button>
+        <button class="filter-btn" data-filter="drawing">Drawing</button>
+        <button class="filter-btn" data-filter="meandering">Meandering</button>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item fade-in" data-category="painting">
+          <div class="placeholder-image placeholder-1" loading="lazy" aria-label="Amber Horizons painting"></div>
+          <div class="gallery-item-overlay">
+            <h3>Amber Horizons</h3>
+            <p>Painting, 2025</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" data-category="drawing">
+          <div class="placeholder-image placeholder-2" loading="lazy"></div>
+          <div class="gallery-item-overlay">
+            <h3>Neural Garden</h3>
+            <p>Drawing, 2025</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" data-category="painting">
+          <div class="placeholder-image placeholder-4" loading="lazy"></div>
+          <div class="gallery-item-overlay">
+            <h3>Still Water</h3>
+            <p>Painting, 2024</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" data-category="drawing">
+          <div class="placeholder-image placeholder-5" loading="lazy"></div>
+          <div class="gallery-item-overlay">
+            <h3>Pixel Drift</h3>
+            <p>Drawing, 2024</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" data-category="painting">
+          <div class="placeholder-image placeholder-7" loading="lazy"></div>
+          <div class="gallery-item-overlay">
+            <h3>Morning Fog</h3>
+            <p>Painting, 2023</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" data-category="drawing">
+          <div class="placeholder-image placeholder-8" loading="lazy"></div>
+          <div class="gallery-item-overlay">
+            <h3>Data Bloom</h3>
+            <p>Drawing, 2023</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" data-category="painting">
+          <div class="placeholder-image placeholder-9" loading="lazy"></div>
+          <div class="gallery-item-overlay">
+            <h3>Ochre Fields</h3>
+            <p>Painting, 2023</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" data-category="meandering">
+          <div class="placeholder-image placeholder-3" loading="lazy"></div>
+          <div class="gallery-item-overlay">
+            <h3>Urban Drift</h3>
+            <p>Meandering, 2025</p>
+          </div>
+        </div>
+        <div class="gallery-item fade-in" data-category="meandering">
+          <div class="placeholder-image placeholder-6" loading="lazy"></div>
+          <div class="gallery-item-overlay">
+            <h3>Pathways</h3>
+            <p>Meandering, 2024</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shop -->
+  <section class="section shop" id="shop">
+    <div class="container">
+      <h2 class="section-title fade-in">Shop</h2>
+      <div class="shop-filters fade-in">
+        <button class="shop-filter-btn active" data-shop-filter="all">All</button>
+        <button class="shop-filter-btn" data-shop-filter="print">Prints</button>
+        <button class="shop-filter-btn" data-shop-filter="original">Originals</button>
+      </div>
+      <div class="shop-grid">
+        <div class="shop-item fade-in" data-shop-type="print">
+          <div class="placeholder-image placeholder-1 shop-item-image"></div>
+          <div class="shop-item-info">
+            <h3>Amber Horizons</h3>
+            <p class="shop-item-type">Archival Print &middot; 18&times;24"</p>
+            <p class="shop-item-price">$85</p>
+            <button class="btn-add-cart" data-name="Amber Horizons (Print)" data-price="85">Add to Cart</button>
+          </div>
+        </div>
+        <div class="shop-item fade-in" data-shop-type="original">
+          <div class="placeholder-image placeholder-1 shop-item-image"></div>
+          <div class="shop-item-info">
+            <h3>Amber Horizons</h3>
+            <p class="shop-item-type">Original Painting &middot; 36&times;48"</p>
+            <p class="shop-item-price">$2,400</p>
+            <button class="btn-add-cart" data-name="Amber Horizons (Original)" data-price="2400">Add to Cart</button>
+          </div>
+        </div>
+        <div class="shop-item fade-in" data-shop-type="print">
+          <div class="placeholder-image placeholder-2 shop-item-image"></div>
+          <div class="shop-item-info">
+            <h3>Neural Garden</h3>
+            <p class="shop-item-type">Archival Print &middot; 16&times;20"</p>
+            <p class="shop-item-price">$75</p>
+            <button class="btn-add-cart" data-name="Neural Garden (Print)" data-price="75">Add to Cart</button>
+          </div>
+        </div>
+        <div class="shop-item fade-in" data-shop-type="print">
+          <div class="placeholder-image placeholder-4 shop-item-image"></div>
+          <div class="shop-item-info">
+            <h3>Still Water</h3>
+            <p class="shop-item-type">Archival Print &middot; 18&times;24"</p>
+            <p class="shop-item-price">$85</p>
+            <button class="btn-add-cart" data-name="Still Water (Print)" data-price="85">Add to Cart</button>
+          </div>
+        </div>
+        <div class="shop-item fade-in" data-shop-type="original">
+          <div class="placeholder-image placeholder-4 shop-item-image"></div>
+          <div class="shop-item-info">
+            <h3>Still Water</h3>
+            <p class="shop-item-type">Original Painting &middot; 30&times;40"</p>
+            <p class="shop-item-price">$1,800</p>
+            <button class="btn-add-cart" data-name="Still Water (Original)" data-price="1800">Add to Cart</button>
+          </div>
+        </div>
+        <div class="shop-item fade-in" data-shop-type="print">
+          <div class="placeholder-image placeholder-7 shop-item-image"></div>
+          <div class="shop-item-info">
+            <h3>Morning Fog</h3>
+            <p class="shop-item-type">Archival Print &middot; 18&times;24"</p>
+            <p class="shop-item-price">$85</p>
+            <button class="btn-add-cart" data-name="Morning Fog (Print)" data-price="85">Add to Cart</button>
+          </div>
+        </div>
+        <div class="shop-item fade-in" data-shop-type="original">
+          <div class="placeholder-image placeholder-9 shop-item-image"></div>
+          <div class="shop-item-info">
+            <h3>Ochre Fields</h3>
+            <p class="shop-item-type">Original Painting &middot; 24&times;36"</p>
+            <p class="shop-item-price">$1,500</p>
+            <button class="btn-add-cart" data-name="Ochre Fields (Original)" data-price="1500">Add to Cart</button>
+          </div>
+        </div>
+        <div class="shop-item fade-in" data-shop-type="print">
+          <div class="placeholder-image placeholder-9 shop-item-image"></div>
+          <div class="shop-item-info">
+            <h3>Ochre Fields</h3>
+            <p class="shop-item-type">Archival Print &middot; 16&times;20"</p>
+            <p class="shop-item-price">$75</p>
+            <button class="btn-add-cart" data-name="Ochre Fields (Print)" data-price="75">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section about" id="about">
+    <div class="container about-grid">
+      <div class="about-photo fade-in">
+        <div class="placeholder-image placeholder-portrait"></div>
+      </div>
+      <div class="about-text fade-in">
+        <h2 class="section-title">About</h2>
+        <p>Kevin Radtke is a contemporary artist based in Portland, Oregon, working across painting, digital media, and sculpture. His work investigates the interplay between natural forms and digital abstraction.</p>
+        <p>With a background in fine arts and a deep curiosity for emerging technologies, Kevin creates pieces that blur the boundary between the handmade and the algorithmic. His work has been exhibited at galleries in New York, Los Angeles, Berlin, and Tokyo.</p>
+        <p>When not in the studio, he teaches workshops on creative coding and experimental art techniques.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <h2 class="section-title fade-in">Get in Touch</h2>
+      <div class="contact-grid">
+        <form class="contact-form fade-in" id="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+        <div class="contact-info fade-in">
+          <div class="contact-detail">
+            <h3>Email</h3>
+            <p>hello@kevinradtke.art</p>
+          </div>
+          <div class="contact-detail">
+            <h3>Studio</h3>
+            <p>Portland, Oregon</p>
+          </div>
+          <div class="contact-detail">
+            <h3>Social</h3>
+            <div class="social-links">
+              <a href="#" aria-label="Instagram">Instagram</a>
+              <a href="#" aria-label="Behance">Behance</a>
+              <a href="#" aria-label="Twitter">Twitter</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Kevin Radtke. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div class="cart-modal" id="cart-modal">
+    <div class="cart-panel">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button class="cart-close" id="cart-close">&times;</button>
+      </div>
+      <div class="cart-items" id="cart-items">
+        <p class="cart-empty">Your cart is empty.</p>
+      </div>
+      <div class="cart-footer" id="cart-footer" style="display:none;">
+        <div class="cart-total">
+          <span>Total</span>
+          <span id="cart-total-price">$0</span>
+        </div>
+        <button class="btn-checkout" id="btn-checkout">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="checkout-modal" id="checkout-modal">
+    <div class="checkout-panel">
+      <div class="cart-header">
+        <h2>Checkout</h2>
+        <button class="cart-close" id="checkout-close">&times;</button>
+      </div>
+      <form class="checkout-form" id="checkout-form">
+        <div class="checkout-summary" id="checkout-summary"></div>
+        <h3 class="checkout-section-title">Shipping Information</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ship-first">First Name</label>
+            <input type="text" id="ship-first" required>
+          </div>
+          <div class="form-group">
+            <label for="ship-last">Last Name</label>
+            <input type="text" id="ship-last" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ship-email">Email</label>
+          <input type="email" id="ship-email" required>
+        </div>
+        <div class="form-group">
+          <label for="ship-address">Address</label>
+          <input type="text" id="ship-address" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ship-city">City</label>
+            <input type="text" id="ship-city" required>
+          </div>
+          <div class="form-group">
+            <label for="ship-state">State</label>
+            <input type="text" id="ship-state" required>
+          </div>
+          <div class="form-group">
+            <label for="ship-zip">ZIP</label>
+            <input type="text" id="ship-zip" required>
+          </div>
+        </div>
+        <h3 class="checkout-section-title">Payment</h3>
+        <div class="form-group">
+          <label for="card-number">Card Number</label>
+          <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="card-exp">Expiry</label>
+            <input type="text" id="card-exp" placeholder="MM/YY" required>
+          </div>
+          <div class="form-group">
+            <label for="card-cvc">CVC</label>
+            <input type="text" id="card-cvc" placeholder="123" required>
+          </div>
+        </div>
+        <div class="cart-total checkout-total">
+          <span>Total</span>
+          <span id="checkout-total-price">$0</span>
+        </div>
+        <button type="submit" class="btn-checkout">Place Order</button>
+      </form>
+      <div class="checkout-confirmation" id="checkout-confirmation" style="display:none;">
+        <div class="confirmation-icon">&#10003;</div>
+        <h3>Order Confirmed</h3>
+        <p>Thank you for your purchase! A confirmation email will be sent shortly.</p>
+        <button class="btn-submit" id="confirmation-close">Continue Browsing</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+    <button class="lightbox-prev" aria-label="Previous image">&#8249;</button>
+    <button class="lightbox-next" aria-label="Next image">&#8250;</button>
+    <div class="lightbox-content">
+      <div class="lightbox-image" id="lightbox-image"></div>
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+(() => {
+  // =====================
+  // Smooth scroll nav
+  // =====================
+  const nav = document.getElementById('nav');
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Mobile menu toggle
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // =====================
+  // Fade-in on scroll
+  // =====================
+  const fadeElements = document.querySelectorAll('.fade-in');
+
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  fadeElements.forEach(el => fadeObserver.observe(el));
+
+  // =====================
+  // Gallery filtering
+  // =====================
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      galleryItems.forEach(item => {
+        if (filter === 'all' || item.dataset.category === filter) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // =====================
+  // Lightbox
+  // =====================
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const closeBtn = document.querySelector('.lightbox-close');
+  const prevBtn = document.querySelector('.lightbox-prev');
+  const nextBtn = document.querySelector('.lightbox-next');
+
+  let currentIndex = 0;
+
+  function getVisibleItems() {
+    return Array.from(galleryItems).filter(item => !item.classList.contains('hidden'));
+  }
+
+  function openLightbox(index) {
+    const visible = getVisibleItems();
+    currentIndex = index;
+    const item = visible[currentIndex];
+    const placeholder = item.querySelector('.placeholder-image');
+    const title = item.querySelector('h3').textContent;
+    const detail = item.querySelector('p').textContent;
+
+    // Clone the gradient as the lightbox image
+    const bg = getComputedStyle(placeholder).background;
+    lightboxImage.style.background = bg;
+    lightboxImage.style.aspectRatio = getComputedStyle(placeholder).aspectRatio;
+
+    lightboxCaption.textContent = `${title} — ${detail}`;
+    lightbox.classList.add('active');
+    lightbox.classList.remove('zoomed');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function navigate(direction) {
+    const visible = getVisibleItems();
+    currentIndex = (currentIndex + direction + visible.length) % visible.length;
+    openLightbox(currentIndex);
+  }
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const visible = getVisibleItems();
+      const index = visible.indexOf(item);
+      if (index !== -1) openLightbox(index);
+    });
+  });
+
+  // Toggle zoom on image click
+  lightboxImage.addEventListener('click', (e) => {
+    e.stopPropagation();
+    lightbox.classList.toggle('zoomed');
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', () => navigate(-1));
+  nextBtn.addEventListener('click', () => navigate(1));
+
+  // Close on background click
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+  });
+
+  // =====================
+  // Shop filtering
+  // =====================
+  const shopFilterBtns = document.querySelectorAll('.shop-filter-btn');
+  const shopItems = document.querySelectorAll('.shop-item');
+
+  shopFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.shopFilter;
+      shopFilterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      shopItems.forEach(item => {
+        if (filter === 'all' || item.dataset.shopType === filter) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // =====================
+  // Cart
+  // =====================
+  let cart = [];
+  const cartToggle = document.getElementById('cart-toggle');
+  const cartCount = document.getElementById('cart-count');
+  const cartModal = document.getElementById('cart-modal');
+  const cartClose = document.getElementById('cart-close');
+  const cartItemsEl = document.getElementById('cart-items');
+  const cartFooter = document.getElementById('cart-footer');
+  const cartTotalPrice = document.getElementById('cart-total-price');
+
+  function updateCartUI() {
+    cartCount.textContent = cart.length;
+
+    if (cart.length === 0) {
+      cartItemsEl.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+      cartFooter.style.display = 'none';
+      return;
+    }
+
+    cartFooter.style.display = 'block';
+    let total = 0;
+    cartItemsEl.innerHTML = cart.map((item, i) => {
+      total += item.price;
+      return `
+        <div class="cart-item">
+          <div class="cart-item-details">
+            <h4>${item.name}</h4>
+          </div>
+          <div class="cart-item-actions">
+            <span class="cart-item-price">$${item.price.toLocaleString()}</span>
+            <button class="cart-item-remove" data-index="${i}">&times;</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+    cartTotalPrice.textContent = `$${total.toLocaleString()}`;
+
+    // Remove item buttons
+    cartItemsEl.querySelectorAll('.cart-item-remove').forEach(btn => {
+      btn.addEventListener('click', () => {
+        cart.splice(parseInt(btn.dataset.index), 1);
+        updateCartUI();
+      });
+    });
+  }
+
+  // Add to cart buttons
+  document.querySelectorAll('.btn-add-cart').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.name;
+      const price = parseInt(btn.dataset.price);
+      cart.push({ name, price });
+      updateCartUI();
+
+      btn.textContent = 'Added!';
+      btn.classList.add('added');
+      setTimeout(() => {
+        btn.textContent = 'Add to Cart';
+        btn.classList.remove('added');
+      }, 1500);
+    });
+  });
+
+  // Open/close cart
+  cartToggle.addEventListener('click', () => {
+    cartModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  cartClose.addEventListener('click', () => {
+    cartModal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  cartModal.addEventListener('click', (e) => {
+    if (e.target === cartModal) {
+      cartModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // =====================
+  // Checkout
+  // =====================
+  const checkoutModal = document.getElementById('checkout-modal');
+  const checkoutClose = document.getElementById('checkout-close');
+  const checkoutForm = document.getElementById('checkout-form');
+  const checkoutSummary = document.getElementById('checkout-summary');
+  const checkoutTotalPrice = document.getElementById('checkout-total-price');
+  const checkoutConfirmation = document.getElementById('checkout-confirmation');
+  const confirmationClose = document.getElementById('confirmation-close');
+  const btnCheckout = document.getElementById('btn-checkout');
+
+  btnCheckout.addEventListener('click', () => {
+    if (cart.length === 0) return;
+
+    // Build summary
+    let total = 0;
+    checkoutSummary.innerHTML = cart.map(item => {
+      total += item.price;
+      return `<div class="checkout-summary-item"><span>${item.name}</span><span>$${item.price.toLocaleString()}</span></div>`;
+    }).join('');
+    checkoutTotalPrice.textContent = `$${total.toLocaleString()}`;
+
+    // Show checkout, hide cart
+    cartModal.classList.remove('active');
+    checkoutForm.style.display = '';
+    checkoutConfirmation.style.display = 'none';
+    checkoutModal.classList.add('active');
+  });
+
+  checkoutClose.addEventListener('click', () => {
+    checkoutModal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  checkoutModal.addEventListener('click', (e) => {
+    if (e.target === checkoutModal) {
+      checkoutModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  checkoutForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkoutForm.style.display = 'none';
+    checkoutConfirmation.style.display = '';
+    cart = [];
+    updateCartUI();
+  });
+
+  confirmationClose.addEventListener('click', () => {
+    checkoutModal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  // =====================
+  // Contact form
+  // =====================
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.btn-submit');
+    const originalText = btn.textContent;
+    btn.textContent = 'Message Sent!';
+    btn.style.background = '#2d6a4f';
+    btn.style.borderColor = '#2d6a4f';
+    btn.style.color = '#fff';
+
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+      form.reset();
+    }, 2500);
+  });
+})();
