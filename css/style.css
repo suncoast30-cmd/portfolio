@@ -380,6 +380,13 @@ img {
   opacity: 0.8;
 }
 
+.gallery-item-overlay .gallery-item-price {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 1;
+}
+
 .gallery-item .placeholder-image {
   transition: transform 0.5s ease;
 }
