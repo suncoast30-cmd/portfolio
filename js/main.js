@@ -87,10 +87,26 @@
     const title = item.querySelector('h3').textContent;
     const detail = item.querySelector('p').textContent;
 
-    // Clone the gradient as the lightbox image
-    const bg = getComputedStyle(placeholder).background;
-    lightboxImage.style.background = bg;
-    lightboxImage.style.aspectRatio = getComputedStyle(placeholder).aspectRatio;
+    lightboxImage.innerHTML = '';
+
+    if (placeholder.tagName === 'IMG') {
+      // Real image — display it directly
+      lightboxImage.style.background = 'none';
+      lightboxImage.style.aspectRatio = '';
+      lightboxImage.style.minWidth = '';
+      lightboxImage.style.minHeight = '';
+      const img = document.createElement('img');
+      img.src = placeholder.src;
+      img.style.cssText = 'max-width:80vw;max-height:70vh;object-fit:contain;border-radius:2px;display:block;';
+      lightboxImage.appendChild(img);
+    } else {
+      // Gradient placeholder — clone the background
+      const bg = getComputedStyle(placeholder).background;
+      lightboxImage.style.background = bg;
+      lightboxImage.style.aspectRatio = getComputedStyle(placeholder).aspectRatio;
+      lightboxImage.style.minWidth = '';
+      lightboxImage.style.minHeight = '';
+    }
 
     lightboxCaption.textContent = `${title} — ${detail}`;
     lightbox.classList.add('active');
