@@ -13,6 +13,7 @@ const PRICE_CATALOG = {
   'Landscape #2 (Original)':   25000,
   'Landscape #4 (Original)':   15000,
   'Landscape (Original)':      15000,
+  'Landscape #5 (Original)':   17500,
 };
 
 exports.handler = async (event) => {
