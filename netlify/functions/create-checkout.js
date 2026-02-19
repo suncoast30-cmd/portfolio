@@ -10,6 +10,9 @@ const PRICE_CATALOG = {
   'Morning Fog (Print)':       8500,
   'Ochre Fields (Original)':   150000,
   'Ochre Fields (Print)':      7500,
+  'Landscape #2 (Original)':   25000,
+  'Landscape #4 (Original)':   15000,
+  'Landscape (Original)':      15000,
 };
 
 exports.handler = async (event) => {
