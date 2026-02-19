@@ -7,3 +7,14 @@
 *.swp
 *.swo
 *~
+
+# Secrets
+.env
+.env.local
+
+# Dependencies
+netlify/functions/node_modules/
+node_modules/
+
+# Netlify
+.netlify/

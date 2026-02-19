@@ -252,8 +252,8 @@
   const checkoutForm = document.getElementById('checkout-form');
   const checkoutSummary = document.getElementById('checkout-summary');
   const checkoutTotalPrice = document.getElementById('checkout-total-price');
-  const checkoutConfirmation = document.getElementById('checkout-confirmation');
-  const confirmationClose = document.getElementById('confirmation-close');
+  const checkoutError = document.getElementById('checkout-error');
+  const checkoutSpinner = document.getElementById('checkout-spinner');
   const btnCheckout = document.getElementById('btn-checkout');
 
   btnCheckout.addEventListener('click', () => {
@@ -270,7 +270,8 @@
     // Show checkout, hide cart
     cartModal.classList.remove('active');
     checkoutForm.style.display = '';
-    checkoutConfirmation.style.display = 'none';
+    checkoutError.style.display = 'none';
+    checkoutSpinner.style.display = 'none';
     checkoutModal.classList.add('active');
   });
 
@@ -286,17 +287,31 @@
     }
   });
 
-  checkoutForm.addEventListener('submit', (e) => {
+  checkoutForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    checkoutError.style.display = 'none';
     checkoutForm.style.display = 'none';
-    checkoutConfirmation.style.display = '';
-    cart = [];
-    updateCartUI();
-  });
+    checkoutSpinner.style.display = '';
 
-  confirmationClose.addEventListener('click', () => {
-    checkoutModal.classList.remove('active');
-    document.body.style.overflow = '';
+    try {
+      const response = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: cart.map(item => ({ name: item.name, price: item.price })) }),
+      });
+      const data = await response.json();
+
+      if (!response.ok || !data.url) {
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+
+      window.location.href = data.url;
+    } catch (err) {
+      checkoutSpinner.style.display = 'none';
+      checkoutForm.style.display = '';
+      checkoutError.textContent = err.message;
+      checkoutError.style.display = '';
+    }
   });
 
   // =====================
