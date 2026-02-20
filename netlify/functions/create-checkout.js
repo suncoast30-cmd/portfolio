@@ -14,6 +14,11 @@ const PRICE_CATALOG = {
   'Landscape #4 (Original)':   15000,
   'Landscape (Original)':      15000,
   'Landscape #5 (Original)':   17500,
+  'Untitled Painting (Original)': 75000,
+  'Untitled Drawing (Original)': 25000,
+  'Landscape #9 (Original)':   35000,
+  'Patron (Original)':         35000,
+  'Waiting (Original)':        45000,
   'Well (Original)':           50000,
   'Untitled (Original)':       35000,
 };
