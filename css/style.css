@@ -160,20 +160,24 @@ img {
    Hero
    ===================== */
 .hero {
-  min-height: 100vh;
+  aspect-ratio: 3068 / 2215;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 80px 40px 40px;
   background-image: url('../images/hero-bg.jpg');
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
+  background-color: #efece8;
 }
 
 .hero-content {
   text-align: center;
   position: relative;
   z-index: 1;
+  margin-left: 12vw;
 }
 
 .hero-title {
@@ -1067,7 +1071,12 @@ img {
    ===================== */
 @media (max-width: 900px) {
   .hero {
-    padding: 120px 24px 60px;
+    padding: 80px 24px 40px;
+    min-height: 40vh;
+  }
+
+  .hero-content {
+    margin-left: 0;
   }
 
   .gallery-grid {
