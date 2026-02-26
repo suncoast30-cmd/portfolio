@@ -117,6 +117,8 @@
   function closeLightbox() {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
+    prevBtn.style.display = '';
+    nextBtn.style.display = '';
   }
 
   function navigate(direction) {
@@ -154,6 +156,31 @@
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') navigate(-1);
     if (e.key === 'ArrowRight') navigate(1);
+  });
+
+  // Shop image lightbox
+  document.querySelectorAll('.shop-item-image').forEach(img => {
+    img.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const item = img.closest('.shop-item');
+      const title = item.querySelector('h3').textContent;
+      const price = item.querySelector('.shop-item-price').textContent;
+
+      lightboxImage.innerHTML = '';
+      lightboxImage.style.background = 'none';
+      lightboxImage.style.aspectRatio = '';
+      const lightImg = document.createElement('img');
+      lightImg.src = img.src;
+      lightImg.style.cssText = 'max-width:80vw;max-height:70vh;object-fit:contain;border-radius:2px;display:block;';
+      lightboxImage.appendChild(lightImg);
+
+      lightboxCaption.textContent = `${title} — ${price}`;
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+      lightbox.classList.add('active');
+      lightbox.classList.remove('zoomed');
+      document.body.style.overflow = 'hidden';
+    });
   });
 
   // =====================
