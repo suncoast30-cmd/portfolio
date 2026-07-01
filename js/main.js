@@ -84,8 +84,10 @@
     currentIndex = index;
     const item = visible[currentIndex];
     const placeholder = item.querySelector('.placeholder-image');
-    const title = item.querySelector('h3').textContent;
-    const detail = item.querySelector('p').textContent;
+    const titleEl = item.querySelector('h3');
+    const detailEl = item.querySelector('p');
+    const title = titleEl ? titleEl.textContent : '';
+    const detail = detailEl ? detailEl.textContent : '';
 
     lightboxImage.innerHTML = '';
 
@@ -108,7 +110,7 @@
       lightboxImage.style.minHeight = '';
     }
 
-    lightboxCaption.textContent = `${title} — ${detail}`;
+    lightboxCaption.textContent = [title, detail].filter(Boolean).join(' — ');
     lightbox.classList.add('active');
     lightbox.classList.remove('zoomed');
     document.body.style.overflow = 'hidden';
