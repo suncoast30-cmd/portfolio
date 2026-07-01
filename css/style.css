@@ -411,7 +411,7 @@ img {
 }
 
 .gallery-item:hover .placeholder-image {
-  transform: scale(1.03);
+  transform: scale(1.08);
 }
 
 /* =====================
@@ -1016,16 +1016,22 @@ img {
   min-width: 400px;
   min-height: 400px;
   border-radius: 2px;
+  overflow: hidden;
 }
 
-.lightbox-image {
+.lightbox-image img {
+  transition: transform 0.08s ease-out;
+  transform-origin: center center;
   cursor: zoom-in;
-  transition: transform 0.3s ease;
 }
 
-.lightbox.zoomed .lightbox-image {
-  transform: scale(1.5);
-  cursor: zoom-out;
+.lightbox-image img.zoomed {
+  cursor: grab;
+}
+
+.lightbox-image img.panning {
+  cursor: grabbing;
+  transition: none;
 }
 
 .lightbox-caption {
