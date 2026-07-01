@@ -46,22 +46,28 @@
   const filterBtns = document.querySelectorAll('.filter-btn');
   const galleryItems = document.querySelectorAll('.gallery-item');
 
+  function itemMatchesFilter(item, filter) {
+    const category = item.dataset.category;
+    // Sketches only show on the Drawing filter, never on the default "All" landing view
+    if (category === 'sketch') return filter === 'drawing';
+    return filter === 'all' || category === filter;
+  }
+
+  function applyFilter(filter) {
+    galleryItems.forEach(item => {
+      item.classList.toggle('hidden', !itemMatchesFilter(item, filter));
+    });
+  }
+
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
-      galleryItems.forEach(item => {
-        if (filter === 'all' || item.dataset.category === filter) {
-          item.classList.remove('hidden');
-        } else {
-          item.classList.add('hidden');
-        }
-      });
+      applyFilter(btn.dataset.filter);
     });
   });
+
+  applyFilter('all');
 
   // =====================
   // Lightbox
